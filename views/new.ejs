@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Package Tracking</title>
+</head>
+<body>
+  <h1>Package Tracking</h1>
+  <h2>Add new package:</h2>
+  <form action="/packages" method="POST">
+    <label for="tracking_number">Tracking number:</label>
+    <input type="text" name="tracking_number" id="tracking_number" required>
+    <br>
+    <label for="courier_company">Courier company:</label>
+    <input type="text" name="courier_company" id="courier_company" required>
+    <br>
+    <label for="item_name">Item name:</label>
+    <input type="text" name="item_name" id="item_name" required>
+    <br>
+    <button type="submit">Save</button>
+  </form>
+  <form action="/login" method="GET">
+    <button type="submit">Back to tracking list</button>
+  </form>
+</body>
+</html>
+

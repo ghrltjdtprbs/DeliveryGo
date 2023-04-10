@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 페이지</title>
+</head>
+<body>
+    <h1>회원 가입</h1>
+    <ul>
+    <% for (comment of comments) { %>
+        <li><%= comment.content %></li>
+        <form action="/update/<%= comment.id %>" method="post">
+            <input type="text" name="content">
+            <input type="submit" value="수정하기">
+        </form>
+        <form action="/delete/<%= comment.id %>" method="post">
+            <input type="submit" value="삭제하기">
+        </form>
+    <% } %>
+    </ul>
+    <hr>
+    <form action="/create" method="post">
+        <label>품목</label>
+        <input type="text" name="content"><br><br>
+        <label>택배회사</label>
+        <input type="text" name="tekbeCompnayName"><br><br>
+        <label>운송장번호</label>
+        <input type="text" name="invoiceNumber"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

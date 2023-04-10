@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Package Tracking</title>
+</head>
+<body>
+  <h1>Package Tracking</h1>
+  <h2>Tracking information for <%= phone_number %>:</h2>
+  <% if (packageList.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Tracking number</th>
+          <th>Courier company</th>
+          <th>Item name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% packageList.forEach((package) => { %>
+          <tr>
+            <td><%= package.invoiceNumber %></td>
+            <td><%= package.tekbeCompnayName %></td>
+            <td><%= package.content %></td>
+            <td>
+              <form action="/update/<%= package.id %>" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit">Delete</button>
+              </form>
+              <form action="/update/<%= package.id %>/edit" method="GET">
+                <button type="submit">Edit</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No tracking information found for <%= telephone %>.</p>
+  <% } %>
+  <form action="/update/new" method="GET">
+    <button type="submit">Add new package</button>
+  </form>
+</body>
+</html>

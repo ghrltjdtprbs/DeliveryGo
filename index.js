@@ -19,10 +19,10 @@ const Users = sequelize.define('Users', {
     
   },
   company: {
-    type: DataTypes.TEXT,
+    type: DataTypes.ARRAY(DataTypes.STRING),
   },
   number: {
-    type: DataTypes.TEXT,
+    type: DataTypes.ARRAY(DataTypes.STRING),
   },
   itemname: {
     type: DataTypes.TEXT,
@@ -66,6 +66,9 @@ app.post('/new', async function (req, res) {
     console.error(error);
     res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
   }
+
+
+
 });
 
 app.get('/new', async function (req, res) {

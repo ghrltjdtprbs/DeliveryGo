@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=ko">
-    <title>New Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=ko">
+	<title>New Page</title>
 </head>
 <style>
 	#tekbeCompnayList,
@@ -75,6 +76,9 @@
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 <script>
+
+
+
 	$(document).ready(function () {
 		var myKey = "jrrtLuZYMZrenSVYMTA9Xg"; // sweet tracker에서 발급받은 자신의 키 넣는다.
 
@@ -104,6 +108,9 @@
 		$("#myButton1").click(function () {
 			var t_code = $('#tekbeCompnayList option:selected').attr('value');
 			var t_invoice = $('#invoiceNumberText').val();
+			var company = $('#tekbeCompnayList option:selected').attr('value'); // 선택된 옵션의 텍스트 값을 가져와 company 변수에 저장
+    		var number = $('#invoiceNumberText').val(); // 입력된 송장번호 값을 가져와 number 변수에 저장
+
 			$.ajax({
 				type: "GET",
 				dataType: "json",
@@ -172,46 +179,87 @@
 
 				}
 			});
+			
+
+
 		});
 
 	});
+
+
+
+
 </script>
+
 <body>
-    <h1>전화번호 받아서 데이터베이스 조회 가능</h1>
-    <form action="/new" method="POST">
-        <% if (phone) { %>
-            <label for="phone">Phone:</label>
-            <input type="text" id="phone" name="phone" value="<%= phone %>" readonly><br><br> <!-- 번호있을때 -->
-        <% } else { %>
-            <label for="phone">Phone:</label>
-            <input type="text" id="phone" name="phone" required><br><br> <!-- 번호없을때 -->
-        <% } %>
-        <label for="company">Company:</label>
-        <select id="company" name="company" value="<%= company %>"><br><br>
-        <label for="number">Number:</label>
-        <input type="text" id="number" name="number" value="<%= number %>"><br><br>
-        <label for="itemname">Item Name:</label>
-        <input type="text" id="itemname" name="itemname" value="<%= itemname %>"><br><br>
-        <button type="submit">Save</button>
-    </form>
+	<h1>전화번호 받아서 데이터베이스 조회 가능</h1>
+	<form action="/new" method="POST">
+		<% if (phone) { %>
+			<label for="phone">Phone:</label>
+			<input type="text" id="phone" name="phone" value="<%= phone %>" readonly><br><br> <!-- 번호있을때 -->
+			<% } else { %>
+				<label for="phone">Phone:</label>
+				<input type="text" id="phone" name="phone" required><br><br> <!-- 번호없을때 -->
+				<% } %>
 
+				
+				<span id="tekbeCompnayName" >택배회사명: </span>
+					<select id="tekbeCompnayList" name="tekbeCompnayList"></select><br /><br />
 
-    <span id="tekbeCompnayName">택배회사명: </span>
-	<select id="tekbeCompnayList" name="tekbeCompnayList"></select><br /><br />
+					<span id="invoiceNumber">운송장번호: </span>
+					<input type="text" id="invoiceNumberText" name="invoiceNumberText"
+						value="${delivey_num}"><br /><br />	
 
-	<span id="invoiceNumber">운송장번호: </span>
-	<input type="text" id="invoiceNumberText" name="invoiceNumberText" value="${delivey_num}"><br /><br />
+					<label for="itemname">Item Name:</label>
+					<input type="text" id="itemname" name="itemname" value="<%= itemname %>"><br><br>
+
+					<script>
+						const company = document.getElementById("tekbeCompnayList").value;
+  const number = document.getElementById("invoiceNumberText").value;
+  console.log("company: ", company);
+  console.log("number: ", number);
+  // 이후에 이 값들을 저장하거나 다른 작업을 수행할 수 있습니다.
+					</script>
+
+					<% if (company) { %>
+						<label for="company">company:</label>
+						<input type="text" id="company" name="company" value="<%= company.Name %>" readonly><br><br> <!-- 번호있을때 -->
+						<% } else { %>
+							<label for="company">company:</label>
+							<input type="text" id="company" name="company" readonly><br><br> <!-- 번호없을때 -->
+							<% } %>
+					
+					<% if (number) { %>
+						<label for="number">number:</label>
+						<input type="text" id="number" name="number" value="<%= number.invoiceNo %>" readonly><br><br> <!-- 번호있을때 -->
+						<% } else { %>
+							<label for="number">number:</label>
+							<input type="text" id="number" name="number" readonly><br><br> <!-- 번호없을때 -->
+							<% } %>
+
+					<label for="company" style="visibility:hidden">Company:</label>
+					<input type="text" id="company" name="company" value="<%= company.Name %>" style="visibility:hidden"><br><br>
+				<label for="number" style="visibility:hidden" >number:</label>
+					<input type="text" id="number" name="number" value="<%= number.invoiceNo %>" style="visibility:hidden"><br><br>
+				
+					<script>console.log(Object.values(company));</script>
+
+					<button type="submit">saveButton</button>
+	</form>
 	<button id="myButton1">택배 조회하기 </button>
-	<br />
-	<br />
-	<div>
-		<table id="myPtag"></table>
-	</div>
-	<br />
-	<div>
-		<table id="myPtag2"></table>
-	</div>
+					<br />
+					<br />
+					<div>
+						<table id="myPtag"></table>
+					</div>
+					<br />
+					<div>
+						<table id="myPtag2"></table>
+					</div>
+
+					
 
 
 </body>
+
 </html>

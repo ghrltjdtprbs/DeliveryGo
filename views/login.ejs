@@ -1,46 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Package Tracking</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내페이지</title>
+    //login
+    <form method="GET" action="/new">
+        <label for="phone">전화번호:</label>
+        <input type="text" id="phone" name="phone" value="<%= phone %>">
+        <br>
+        <input type="submit" value="확인">
+      </form>
+    //register
+    <form action="/register" method="get">
+        <input type="submit" value="submit">
+    </form>
+
 </head>
 <body>
-  <h1>Package Tracking</h1>
-  <h2>Tracking information for <%= phone_number %>:</h2>
-  <% if (packageList.length > 0) { %>
-    <table>
-      <thead>
-        <tr>
-          <th>Tracking number</th>
-          <th>Courier company</th>
-          <th>Item name</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% packageList.forEach((package) => { %>
-          <tr>
-            <td><%= package.invoiceNumber %></td>
-            <td><%= package.tekbeCompnayName %></td>
-            <td><%= package.content %></td>
-            <td>
-              <form action="/update/<%= package.id %>" method="POST">
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="submit">Delete</button>
-              </form>
-              <form action="/update/<%= package.id %>/edit" method="GET">
-                <button type="submit">Edit</button>
-              </form>
-            </td>
-          </tr>
-        <% }); %>
-      </tbody>
-    </table>
-  <% } else { %>
-    <p>No tracking information found for <%= telephone %>.</p>
-  <% } %>
-  <form action="/update/new" method="GET">
-    <button type="submit">Add new package</button>
-  </form>
+    
 </body>
 </html>

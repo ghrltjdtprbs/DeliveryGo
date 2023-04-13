@@ -164,9 +164,9 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Phone</th>
+					
 					<th>Item Name</th>
-					<th>Company</th>
+					
 					<th>Number</th>
 					<th>Action</th>
 				</tr>
@@ -176,15 +176,11 @@
 					<% users.forEach(function(user) { %>
 						<% if (user.company !==null && user.number !==null) { %>
 							<tr>
-								<td>
-									<%= user.phone %>
-								</td>
+								
 								<td>
 									<%= user.itemname %>
 								</td>
-								<td>
-									<%= user.company %>
-								</td>
+								
 								<td>
 									<%= user.number %>
 								</td>

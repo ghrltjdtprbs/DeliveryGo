@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="navBar.css">
-    <link rel="stylesheet" href="signUp.css">
+
+    <link rel="stylesheet" href="./css/navBar.css">
+    <link rel="stylesheet" href="./css/signIn.css">
     <title>DeliveryGo</title>
 </head>
 
 <body>
+    <!--상단 헤더 네비-->
     <header>
         <nav>
             <div class="wrapper" style="width: 1200px; text-align: right;">
@@ -21,23 +23,24 @@
             </div>
         </nav>
     </header>
-    <form action="/register" method="post">
-        <div class="wrap">
-            <div class="box">
-                <div class="box-top">
 
-                    
-                    <input type="text" name="phone" placeholder="010-0000-0000"><br><br>
 
-                </div>
-
-                <div class="box-buttom">
-
-                    <button type="submit">회원 등록</button>
-                </div>
+    <!--본문 내용-->
+    <div class="wrap">
+        <div class="box">
+            <div class="box-top">
+                <form action="">
+                    <input type="text" name="usernumber" placeholder="010-0000-0000">
+                </form>
+            </div>
+            <div class="box-buttom">
+                <button type="submit">로그인</button>
+                <a href="./signup.html" class="box-buttom_signup">회원가입</a>
             </div>
         </div>
-    </form>
+    </div>
+
+
 </body>
 
 </html>

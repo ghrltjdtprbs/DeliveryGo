@@ -1,0 +1,106 @@
+
+
+body{
+    background-color: black;
+    margin-top: 5rem;
+    color: white;
+    background: url('../img/signinBackground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    overflow: hidden;
+}
+
+/*박스 위치 조정. 전체 박스의 center 잡는 역할*/
+.wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+/*박스 내부 block들의 위치 조정*/
+.box{
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 50px;
+    background-color: black;
+    width: 600px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+}
+
+/*input 및 input 관련 box들*/
+.box-top{
+    width: 100%;
+}
+
+.box-top form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.box-top input{
+    margin-top: 40px;
+    width: 80%;
+    height: 50px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: white;
+}
+
+
+/*button 및 button 관련 박스들*/
+.box-buttom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    
+}
+
+.box-buttom button{
+    width: 80%;
+    height: 60px;
+    border-radius: 40px;
+    font-size: 20px;
+    color: black;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+
+.box-buttom_signup{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+
+
+/*18:48 
+issue1) input의 width가 100% 적용해도, 부모의 width값에 맞춰주질 않음. 버튼은 된느데!!
+issue2) html에서 회원가입 button이 누르면 회원가입페이지로 이동해야하는데, a태그 적용하면 조금 바뀜.
+일단 button으로 해결가능한 방법이 있나 찾아보고, 없으면 a태그 쓰되,
+그럼 부모요소가 a태그가 되니까 너비같은거 수정해야 할지도 모름.
+근데 issue1인 input width 문제가 해결되면 얘도 같은 원리로 적용하면 될듯.*/
+/*해당 이슈 해결(done) _ 대처 방안 : 바로 위의 상위 부모 width를 지정하니 바로 해결 됨.*/

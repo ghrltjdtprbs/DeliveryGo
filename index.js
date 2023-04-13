@@ -5,6 +5,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
+app.use(express.static("views"));
+app.engine("html", require("ejs").renderFile);
+app.set("views", __dirname + "/views");
 
 // 데이터베이스 정의
 const sequelize = new Sequelize({

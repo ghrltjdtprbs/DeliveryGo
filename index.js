@@ -60,9 +60,11 @@ app.post('/register', async function (req, res) {
       console.log('이미 가입된 사용자입니다.');
     }else{
       //register페이지에서 정보 입력하면 갱신해줌
+      
       await Users.create(req.body);
-      console.log('데이터저장성공');
       res.redirect('/new?phone=' + phone);
+      console.log('데이터저장성공');
+      
     }
     
     console.log('데이터입력값',phone);

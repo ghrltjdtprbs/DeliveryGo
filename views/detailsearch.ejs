@@ -170,50 +170,27 @@
 
 <body>
 	<h1>상세조회</h1>
-	<form action="/new" method="POST">
-		<% if (phone) { %>
-			<label for="phone">Phone:</label>
-			<input type="text" id="phone" name="phone" value="<%= phone %>" readonly><br><br> <!-- 번호있을때 -->
-			<% } else { %>
-				<label for="phone">Phone:</label>
-				<input type="text" id="phone" name="phone" required><br><br> <!-- 번호없을때 -->
-				<% } %>
+	<form action="/detailsearch" method="get">
 
+		<% if (req.query.phone && req.query.itemname && req.query.company && req.query.number) { %>
+			<h2>Received Data:</h2>
+			<ul>
+				<li>Phone: <%= req.query.phone %>
+				</li>
+				<li>Item Name: <%= req.query.itemname %>
+				</li>
+				<li>Company: <%= req.query.company %>
+				</li>
+				<li>Number: <%= req.query.number %>
+				</li>
+			</ul>
+			<% } %>
 
-					<span id="tekbeCompnayName">택배회사명: </span>
-					<select id="tekbeCompnayList" name="tekbeCompnayList"></select><br /><br />
+				<span id="tekbeCompnayName">택배회사명: </span>
+				<select id="tekbeCompnayList" name="tekbeCompnayList"></select><br /><br />
 
-					<span id="invoiceNumber">운송장번호: </span>
-					<input type="text" id="invoiceNumberText" name="invoiceNumberText" value=user.number><br /><br />
-
-					<label for="itemname">Item Name:</label>
-					<input type="text" id="itemname" name="itemname" value="<%= itemname %>"><br><br>
-
-
-					<% if (company) { %>
-						<label for="company">company:</label>
-						<input type="text" id="company" name="company" value="<%= company.Name %>" readonly><br><br>
-						<!-- 번호있을때 -->
-						<% } else { %>
-							<label for="company">company:</label>
-							<input type="text" id="company" name="company" readonly><br><br> <!-- 번호없을때 -->
-							<% } %>
-
-								<% if (number) { %>
-									<label for="number">number:</label>
-									<input type="text" id="number" name="number" value="<%= number.invoiceNo %>"
-										readonly><br><br> <!-- 번호있을때 -->
-									<% } else { %>
-										<label for="number">number:</label>
-										<input type="text" id="number" name="number" readonly><br><br> <!-- 번호없을때 -->
-										<% } %>
-
-											<h4>저장정보</h4>
-
-											<li>
-												<%= phone%>
-													<%= itemname%>
-											</li>
+				<span id="invoiceNumber">운송장번호: </span>
+				<input type="text" id="invoiceNumberText" name="invoiceNumberText" value=user.number><br /><br />
 
 
 

@@ -197,9 +197,18 @@ app.get('/new', async function (req, res) {
   }
 });
 
-app.get('/detailsearch', (req, res) => {
-  const { phone, company, number, itemname } = req.query;
-  res.render('detailsearch', { phone, company, number, itemname });
+app.get('/detailsearch', function(req, res) {
+  var phone = req.query.phone;
+  var itemname = req.query.itemname;
+  var company = req.query.company;
+  var number = req.query.number;
+
+  res.render('detailsearch', {
+    phone: phone,
+    itemname: itemname,
+    company: company,
+    number: number
+  });
 });
 
 app.listen(3000, function () {

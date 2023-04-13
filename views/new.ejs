@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=ko">
+	<title>New Page</title>
+</head>
+
+<body>
+	<h1>전화번호 받아서 데이터베이스 조회 가능</h1>
+	<form action="/new" method="POST">
+		<% if (phone) { %>
+			<label for="phone">Phone:</label>
+			<input type="text" id="phone" name="phone" value="<%= phone %>" readonly><br><br> <!-- 번호있을때 -->
+			<% } else { %>
+				<label for="phone">Phone:</label>
+				<input type="text" id="phone" name="phone" required><br><br> <!-- 번호없을때 -->
+				<% } %>
+
+					<label for="itemname">Item Name:</label>
+					<input type="text" id="itemname" name="itemname"><br><br>
+
+					<label for="company">company:</label>
+					<input type="text" id="company" name="company" required><br><br> <!-- 번호없을때 -->
+
+					<label for="number">number:</label>
+					<input type="text" id="number" name="number" required><br><br> <!-- 번호없을때 -->
+					<button type="submit">saveButton</button>
+
+	</form>
+
+
+	<form action="/detailsearch" method="POST">
+		<table>
+		  <thead>
+			<tr>
+			  <th>Phone</th>
+			  <th>Item Name</th>
+			  <th>Company</th>
+			  <th>Number</th>
+			  <th>Action</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<% if (users.length > 0) { %>
+			  <% users.forEach(function(user) { %>
+				<tr>
+				  <td><%= user.phone %></td>
+				  <td><%= user.itemname %></td>
+				  <td><%= user.company %></td>
+				  <td><%= user.number %></td>
+				  <td>
+					<form action="/detailsearch" method="get">
+					  <input type="hidden" name="phone" value="<%= user.phone %>">
+					  <input type="hidden" name="itemname" value="<%= user.itemname %>">
+					  <input type="hidden" name="company" value="<%= user.company %>">
+					  <input type="hidden" name="number" value="<%= user.number %>">
+					  <button type="submit">Button</button>
+					</form>
+				  </td>
+				</tr>
+			  <% }); %>
+			<% } else { %>
+			  <tr>
+				<td colspan="5">No data available</td>
+			  </tr>
+			<% } %>
+		  </tbody>
+		</table>
+	  </form>
+
+
+
+
+
+</body>
+
+</html>

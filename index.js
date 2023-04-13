@@ -16,13 +16,12 @@ const Users = sequelize.define('Users', {
   phone: {
     type: DataTypes.TEXT,
     allowNull: false,
-    
   },
   company: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
+    type: DataTypes.TEXT,
   },
   number: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
+    type: DataTypes.TEXT,
   },
   itemname: {
     type: DataTypes.TEXT,
@@ -62,13 +61,42 @@ app.post('/register', async function (req, res) {
       //register페이지에서 정보 입력하면 갱신해줌
       
       await Users.create(req.body);
-      res.redirect('/new?phone=' + phone);
+      res.redirect('/')
       console.log('데이터저장성공');
       
     }
-    
+    res.redirect('/')
     console.log('데이터입력값',phone);
    
+  } catch (error) {
+    console.error(error);
+    res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
+  }
+});
+
+//login 페이지
+app.get('/', async function (req, res) {
+  try {
+    const users = await Users.findAll();
+    res.render('login', { phone: '', users })
+  } catch (error) {
+    console.error(error);
+    res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
+  }
+});
+
+app.post('/login', async function (req, res) {
+  const { phone } = req.body;
+  try {
+    const user = await Users.findOne({ where: { phone } })
+    if (user) {
+      // 전화번호가 일치하는 경우
+      res.redirect('/new?phone=' + phone)
+    } else {
+      // 전화번호가 일치하지 않는 경우
+      console.log('로그인 실패! 회원가입해주세요');
+      res.status(401).send('로그인에 실패하였습니다.');
+    }
   } catch (error) {
     console.error(error);
     res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
@@ -126,8 +154,8 @@ app.post('/new', async function (req, res) {
     }
     
     const users = await Users.findAll({where: { phone }});
-    res.render('new', { phone, company:user.company, number:user.number, itemname, users });
-     console.log('데이터입력값', user.phone, user.company, user.number, user.itemname);
+    res.render('new', { phone, company, number, itemname, users });
+     console.log('데이터입력값', phone, company, number, itemname);
     console.log(itemname); 
    
   } catch (error) {

@@ -19,6 +19,7 @@
 		border: 1px solid black;
 		border-radius: 3px;
 	}
+
 	#tekbeCompnayName,
 	#invoiceNumber {
 		color: black;
@@ -26,6 +27,7 @@
 		margin-right: 20px;
 		font-size: 18px;
 	}
+
 	#myButton1 {
 		background: #6893b0;
 		background-image: -webkit-linear-gradient(top, #6893b0, #2980b9);
@@ -42,6 +44,7 @@
 		padding: 10px 10px 10px 10px;
 		text-decoration: none;
 	}
+
 	#myButton1:hover {
 		background: #3cb0fd;
 		background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
@@ -51,17 +54,20 @@
 		background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
 		text-decoration: none;
 	}
+
 	table {
 		font-family: arial, sans-serif;
 		border-collapse: collapse;
 		width: 100%;
 	}
+
 	td,
 	th {
 		border: 1px solid black;
 		text-align: left;
 		padding: 8px;
 	}
+
 	tr:nth-child(even) {
 		background-color: white;
 	}
@@ -96,7 +102,7 @@
 			var t_code = $('#tekbeCompnayList option:selected').attr('value');
 			var t_invoice = $('#invoiceNumberText').val();
 			var company = $('#tekbeCompnayList option:selected').attr('value'); // 선택된 옵션의 텍스트 값을 가져와 company 변수에 저장
-    		var number = $('#invoiceNumberText').val(); // 입력된 송장번호 값을 가져와 number 변수에 저장
+			var number = $('#invoiceNumberText').val(); // 입력된 송장번호 값을 가져와 number 변수에 저장
 			$.ajax({
 				type: "GET",
 				dataType: "json",
@@ -157,7 +163,7 @@
 					$("#myPtag2").html(header + myTracking);
 				}
 			});
-			
+
 		});
 	});
 </script>
@@ -173,77 +179,58 @@
 				<input type="text" id="phone" name="phone" required><br><br> <!-- 번호없을때 -->
 				<% } %>
 
-				
-				<span id="tekbeCompnayName" >택배회사명: </span>
+
+					<span id="tekbeCompnayName">택배회사명: </span>
 					<select id="tekbeCompnayList" name="tekbeCompnayList"></select><br /><br />
 
 					<span id="invoiceNumber">운송장번호: </span>
-					<input type="text" id="invoiceNumberText" name="invoiceNumberText"
-						value=user.number><br /><br />	
+					<input type="text" id="invoiceNumberText" name="invoiceNumberText" value=user.number><br /><br />
 
 					<label for="itemname">Item Name:</label>
 					<input type="text" id="itemname" name="itemname" value="<%= itemname %>"><br><br>
-					
-						
-				
-					
-					
-				
-				
-					
-					<script>
-						const company = document.getElementById("tekbeCompnayList").value;
-  const number = document.getElementById("invoiceNumberText").value;
-  console.log("company: ", company);
-  console.log("number: ", number);
-  // 이후에 이 값들을 저장하거나 다른 작업을 수행할 수 있습니다.
-					</script>
+
 
 					<% if (company) { %>
 						<label for="company">company:</label>
-						<input type="text" id="company" name="company" value="<%= company.Name %>" readonly><br><br> <!-- 번호있을때 -->
+						<input type="text" id="company" name="company" value="<%= company.Name %>" readonly><br><br>
+						<!-- 번호있을때 -->
 						<% } else { %>
 							<label for="company">company:</label>
 							<input type="text" id="company" name="company" readonly><br><br> <!-- 번호없을때 -->
 							<% } %>
-					
-					<% if (number) { %>
-						<label for="number">number:</label>
-						<input type="text" id="number" name="number" value="<%= number.invoiceNo %>" readonly><br><br> <!-- 번호있을때 -->
-						<% } else { %>
-							<label for="number">number:</label>
-							<input type="text" id="number" name="number" readonly><br><br> <!-- 번호없을때 -->
-							<% } %>
+
+								<% if (number) { %>
+									<label for="number">number:</label>
+									<input type="text" id="number" name="number" value="<%= number.invoiceNo %>"
+										readonly><br><br> <!-- 번호있을때 -->
+									<% } else { %>
+										<label for="number">number:</label>
+										<input type="text" id="number" name="number" readonly><br><br> <!-- 번호없을때 -->
+										<% } %>
+
+											<h4>저장정보</h4>
+
+											<li>
+												<%= phone%>
+													<%= itemname%>
+											</li>
 
 
 
-							<h4>저장정보</h4>
-							
-							    <li><%= phone%> <%= itemname%></li>
-							
 
-
-					<label for="company" style="visibility:hidden">Company:</label>
-					<input type="text" id="company" name="company" value="<%= company.Name %>" style="visibility:hidden"><br><br>
-				<label for="number" style="visibility:hidden" >number:</label>
-					<input type="text" id="number" name="number" value="<%= JSON.stringify(number) %>" style="visibility:hidden"><br><br>
-				
-					<script>console.log(JSON.stringify(company));</script>
-
-					<button type="submit">saveButton</button>
 	</form>
 	<button id="myButton1">택배 조회하기 </button>
-					<br />
-					<br />
-					<div>
-						<table id="myPtag"></table>
-					</div>
-					<br />
-					<div>
-						<table id="myPtag2"></table>
-					</div>
+	<br />
+	<br />
+	<div>
+		<table id="myPtag"></table>
+	</div>
+	<br />
+	<div>
+		<table id="myPtag2"></table>
+	</div>
 
-					
+
 
 
 </body>

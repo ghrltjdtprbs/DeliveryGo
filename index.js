@@ -125,8 +125,9 @@ app.post('/new', async function (req, res) {
       
     }
     
-    res.render('new', { phone, company:user.company, number:user.number, itemname });
-     console.log('데이터입력값', user.phone);
+    const users = await Users.findAll({where: { phone }});
+    res.render('new', { phone, company:user.company, number:user.number, itemname, users });
+     console.log('데이터입력값', user.phone, user.company, user.number, user.itemname);
     console.log(itemname); 
    
   } catch (error) {
@@ -134,6 +135,19 @@ app.post('/new', async function (req, res) {
     res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
   }
 });
+
+app.get('/new/:phone', async function (req, res) {
+  const phone = req.params.phone;
+
+  try {
+    const users = await Users.findAll({where: { phone }});
+    res.render('phone', { phone, users });
+  } catch (error) {
+    console.error(error);
+    res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
+  }
+});
+
 
 app.get('/new', async function (req, res) {
   try {

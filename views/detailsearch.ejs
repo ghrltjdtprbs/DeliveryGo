@@ -163,7 +163,7 @@
 </script>
 
 <body>
-	<h1>전화번호 받아서 데이터베이스 조회 가능</h1>
+	<h1>상세조회</h1>
 	<form action="/new" method="POST">
 		<% if (phone) { %>
 			<label for="phone">Phone:</label>
@@ -179,7 +179,7 @@
 
 					<span id="invoiceNumber">운송장번호: </span>
 					<input type="text" id="invoiceNumberText" name="invoiceNumberText"
-						value="${delivey_num}"><br /><br />	
+						value=user.number><br /><br />	
 
 					<label for="itemname">Item Name:</label>
 					<input type="text" id="itemname" name="itemname" value="<%= itemname %>"><br><br>

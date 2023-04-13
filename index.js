@@ -168,7 +168,12 @@ app.get('/new', async function (req, res) {
     res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
   }
 });
-//
+
+app.get('/detailsearch', (req, res) => {
+  const { phone, company, number, itemname } = req.query;
+  res.render('detailsearch', { phone, company, number, itemname });
+});
+
 app.listen(3000, function () {
   console.log('Server is listening on port 3000');
 });

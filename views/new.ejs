@@ -218,31 +218,6 @@
 										<% } %>
 											//list1에 데이터를 저장해서 이 정보 이용해 상세조회 하고싶음
 
-
-
-
-											<h1>전화번호: <%= phone %></h1>
-
-<% if (users.length > 0) { %>
-  <ol>
-    <% users.forEach(user => { %>
-      <% if (user.number !== null) { %>
-        <li>
-          <p>업체명: <%= user.company %></p>
-          <p>번호: <%= user.number %></p>
-          <p>상품명: <%= user.itemname %></p>
-        </li>
-      <% } %>
-    <% }); %>
-  </ol>
-<% } else { %>
-  <p>해당 전화번호로 입력된 데이터가 없습니다.</p>
-<% } %>
-
-
-
-
-
 														<label for="company" style="visibility:hidden">Company:</label>
 														<input type="text" id="company" name="company"
 															value="<%= company %>" style="visibility:hidden"><br><br>
@@ -265,6 +240,33 @@
 	<div>
 		<table id="myPtag2"></table>
 	</div>
+
+	<h1>전화번호: <%= phone %>
+	</h1>
+
+	<% if (users.length > 0) { %>
+		<ol>
+		  <% users.forEach(user => { %>
+			<% if (user.number !== null) { %>
+			  <li>
+				<p>업체명: <%= user.company %></p>
+				<p>번호: <%= user.number %></p>
+				<p>상품명: <%= user.itemname %></p>
+				<form method="get" action="/detailsearch">
+				  <input type="hidden" name="phone" value="<%= phone %>">
+				  <input type="hidden" name="company" value="<%= user.company %>">
+				  <input type="hidden" name="number" value="<%= user.number %>">
+				  <input type="hidden" name="itemname" value="<%= user.itemname %>">
+				  <button type="submit">자세히 보기</button>
+				</form>
+			  </li>
+			<% } %>
+		  <% }); %>
+		</ol>
+	  <% } else { %>
+		<p>해당 전화번호로 입력된 데이터가 없습니다.</p>
+	  <% } %>
+
 
 
 

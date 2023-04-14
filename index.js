@@ -106,6 +106,11 @@ app.post('/login', async function (req, res) {
   }
 });
 
+//main
+app.get('/main', async function (req, res) {
+  res.render('main');
+});
+
 //login 페이지
 app.get('/', async function (req, res) {
   try {

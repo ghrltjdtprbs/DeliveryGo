@@ -136,18 +136,18 @@
 				<div class="wrap_box-middle">
 
 					<% if (phone) { %>
-						<label for="phone">Phone:</label>
+						<label for="phone">전화번호:</label>
 						<input type="text" id="phone" name="phone" value="<%= phone %>" readonly><br><br> <!-- 번호있을때 -->
 						<% } else { %>
-							<label for="phone">Phone:</label>
+							<label for="phone">전화번호:</label>
 							<input type="text" id="phone" name="phone" required><br><br> <!-- 번호없을때 -->
 							<% } %>
 								<div class="wrap2 box2_1">
-									<label for="itemname">Item Name:</label>
+									<label for="itemname">품목명:</label>
 									<input type="text" id="itemname" name="itemname"><br><br>
 								</div>
 								<div class="wrap2 box2_2">
-									<label for="company">company:</label>
+									<label for="company">택배사:</label>
 									<select id="company" name="company">
 										<option value="04" selected>CJ대한통운</option>
 										<option value="05">한진택배</option>

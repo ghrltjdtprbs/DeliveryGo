@@ -200,7 +200,7 @@ app.get('/new', async function (req, res) {
   }
 });
 
-app.get('/detailsearch', function(req, res) {
+app.post('/detailsearch', function(req, res) {
   var phone = req.query.phone;
   var itemname = req.query.itemname;
   var company = req.query.company;
@@ -212,6 +212,20 @@ app.get('/detailsearch', function(req, res) {
     company: company,
     number: number
   });
+});
+
+app.post('/delete', async function (req, res) {
+  const number = req.body.number;
+  const phone = req.body.phone;
+
+  try {
+    // 데이터베이스에서 해당 데이터를 삭제
+    await Users.destroy({ where: { number }});
+    res.redirect('/'); // 삭제 후 해당 페이지로 리다이렉트
+  } catch (error) {
+    console.error(error);
+    res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
+  }
 });
 
 app.listen(3000, function () {

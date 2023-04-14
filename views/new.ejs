@@ -160,13 +160,11 @@
 	</form>
 
 
-	<form action="/detailsearch" method="POST">
+	<form action="/detailsearch" method="post">
 		<table>
 			<thead>
 				<tr>
-					
 					<th>Item Name</th>
-					
 					<th>Number</th>
 					<th>Action</th>
 				</tr>
@@ -206,7 +204,9 @@
 											</div>
 										</div>
 										</div>
+										
 										<button type="submit" class="btn btn-default">상세조회</button>
+										
 									</form>
 								</td>
 							</tr>
@@ -221,8 +221,44 @@
 		</table>
 	</form>
 
-
-
+	
+		<table>
+		  <thead>
+			<tr>
+			  <th>Item Name</th>
+			  <th>Number</th>
+			  <th>Company</th>
+			  <th>Action</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<% if (users.length> 0) { %>
+			  <% users.forEach(function(user) { %>
+				<% if (user.company !==null && user.number !==null) { %>
+				  <tr>
+					<td><%= user.itemname %></td>
+					<td><%= user.number %></td>
+					<td><%= user.company %></td>
+					<td>
+						<form action="/delete" method="POST">
+							<input type="hidden" name="itemname" value="<%= user.itemname %>">
+							<input type="hidden" name="number" value="<%= user.number %>">
+							<input type="hidden" name="company" value="<%= user.company %>">
+							<button type="submit">삭제</button>	
+						</form>
+						
+					</td>
+				  </tr>
+				<% } %>
+			  <% }); %>
+			<% } else { %>
+			  <tr>
+				<td colspan="3">No data available</td>
+			  </tr>
+			<% } %>
+		  </tbody>
+		</table>
+	
 
 </body>
 

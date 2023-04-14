@@ -1,0 +1,22 @@
+
+.scroll-box{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    margin: 10px;
+    flex-direction: column;
+    overflow: hidden auto;
+    scroll-snap-type: y mandatory;
+}
+
+.scroll {
+    scroll-snap-align: start;
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    scroll-snap-align: center;
+}
+

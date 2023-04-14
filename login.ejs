@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navBar.css">
+    <link rel="stylesheet" href="css/signIn.css">
+    <title>DeliveryGo</title>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="wrapper" style="width: 1200px; text-align: right;">
+                <a class="bar" href="mainInfo.html">소개하기</a>
+                <a class="bar" href="/main">홈화면</a>
+                <a class="bar" href="/">로그인</a>
+                <a class="bar" href="feedback.html">피드백</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="wrap">
+        <div class="box">
+            <form method="post" action="/new">
+            <div class="box-top" style="text-align: center;">
+                
+                    <input type="text" id="phone" name="phone" placeholder="010-0000-0000" value="<%= phone %>">  
+                    <input type="submit" class="box-buttom button" value="로그인" style="margin-left: 25px;">           
+                
+            </div>
+            </form>
+            <form action="/register" method="get" style="width:560px;">
+            <div class="box-buttom">
+                
+                    <button type="submit" value="submit" class="box-buttom_signup">회원가입</button>
+                
+            </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

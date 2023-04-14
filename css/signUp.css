@@ -1,0 +1,80 @@
+body{
+    background-color: black;
+    margin-top: 5rem;
+    color: white;
+    overflow: hidden;
+}
+
+.wrap{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(138, 138, 138, 0.5);
+    width: 600px;
+    height: 350px;
+    box-sizing: border-box;
+    border-radius: 50px;
+    gap: 40px;
+}
+
+/*input 및 input 관련 box들*/
+.box-top{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.box-top form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.box-top input{
+    width: 80%;
+    height: 50px;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    color: white;
+    background-color: transparent;
+    font-size: 20px;
+}
+
+.box-top input::placeholder{
+    color: rgba(255, 255, 255, 30);
+    font-weight: lighter;
+    opacity: 30%;
+    letter-spacing: 2px;
+}
+
+.box-buttom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    
+}
+
+.box-buttom button{
+    width: 80%;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 20px;
+    border: none;
+    color: black;
+    font-weight: bold;
+
+}

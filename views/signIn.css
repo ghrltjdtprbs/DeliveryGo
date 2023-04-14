@@ -1,10 +1,8 @@
-
-
-body{
+body {
     background-color: black;
     margin-top: 5rem;
     color: white;
-    background: url('../img/signinBackground.jpg');
+    background: url('https://raw.githubusercontent.com/DeliveryGo/front-end/b04db2e18dd71be4158379347280444b2e6b9496/%EC%8B%A0%EC%83%81/img/signinBackground.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 0.7;
@@ -73,7 +71,6 @@ body{
     
 }
 
-
 .box-buttom button{
     width: 80%;
     height: 60px;
@@ -88,7 +85,9 @@ body{
 .box-buttom_signup{
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: center;
+    vertical-align: middle;
     color: white;
     text-decoration: none;
     font-weight: bold;

@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta http-equiv="Content-Type" content="text/html; charset=ko">
+	<link rel="stylesheet" href="css/navBar.css">
 
 	<style>
 		@font-face {
@@ -93,7 +94,7 @@
 		}
 
 		tr:first-child th:first-child {
-			border-top-left-radius: 6px;
+			border-top-left-radius: 0px;
 		}
 
 		tr:first-child th:last-child {
@@ -110,7 +111,7 @@
 		}
 
 		tr:nth-child(even) td {
-			background: #eaeaed;
+			background: #eee;
 		}
 
 		tr:last-child td:first-child {
@@ -126,6 +127,7 @@
 </head>
 
 <body>
+	
 	<div class="main-wrap">
 		<form action="/new" method="POST">
 			<div class="main-wrap-content">
@@ -136,11 +138,12 @@
 				<div class="wrap_box-middle">
 
 					<% if (phone) { %>
-						<label for="phone">전화번호:</label>
-						<input type="text" id="phone" name="phone" value="<%= phone %>" readonly><br><br> <!-- 번호있을때 -->
+						<label for="phone"></label>
+						<input type="hidden" id="phone" name="phone" value="<%= phone %>" readonly><br><br>
+						<!-- 번호있을때 -->
 						<% } else { %>
-							<label for="phone">전화번호:</label>
-							<input type="text" id="phone" name="phone" required><br><br> <!-- 번호없을때 -->
+							<label for="phone"></label>
+							<input type="hidden" id="phone" name="phone" required><br><br> <!-- 번호없을때 -->
 							<% } %>
 								<div class="wrap2 box2_1">
 									<label for="itemname">품목명:</label>
@@ -335,7 +338,7 @@
 			</div>
 
 			<td>
-				<form action="/delete" method="POST">
+				<form action="/detailsearch" method="POST">
 					<input type="hidden" name="itemname" value="<%= user.itemname %>">
 					<input type="hidden" name="number" value="<%= user.number %>">
 					<input type="hidden" name="company" value="<%= user.company %>">
@@ -348,6 +351,8 @@
 				<input type="hidden" name="itemname" value="<%= user.itemname %>">
 				<input type="hidden" name="number" value="<%= user.number %>">
 				<input type="hidden" name="company" value="<%= user.company %>">
+				<input type="hidden" name="id" value="<%= user.id %>">
+				<input type="hidden" name="phone" value="<%= user.phone %>">
 				<button type="submit">삭제</button>
 			</form>
 		</td>

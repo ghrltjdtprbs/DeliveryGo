@@ -31,6 +31,52 @@ const Users = sequelize.define('Users', {
   },
 });
 
+// 데이터베이스 정의
+const sequelize1 = new Sequelize({
+  dialect: 'sqlite',
+  storage: 'database1.sqlite',
+});
+
+const Feedbacks = sequelize1.define('Feedbacks', {
+  
+  feedback: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  }
+});
+
+(async () => {
+  try {
+    await sequelize1.authenticate();
+    console.log('Connection has been established successfully.');
+    await Feedbacks.sync();
+    console.log('All models were synchronized successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+})();
+
+// 피드백 등록 페이지
+app.get('/feedback', async function (req, res) {
+  res.render('feedback', {  feedback: '' });
+});
+
+// 피드백 등록 처리
+app.post('/feedback', async function (req, res) {
+  const { feedback } = req.body;
+
+  try {
+    await Feedbacks.create({  feedback });
+    res.status(401).send('<script>alert("sucess."); location.href="/";</script>');
+    res.render('/');
+  } catch (error) {
+    console.error(error);
+    res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
+  }
+});
+
+
+
 (async () => {
   try {
     await sequelize.authenticate();
@@ -77,42 +123,13 @@ app.post('/register', async function (req, res) {
   }
 });
 
-//login 페이지
-app.get('/', async function (req, res) {
-  try {
-    const users = await Users.findAll();
-    res.render('login', { phone: '', users })
-  } catch (error) {
-    console.error(error);
-    res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
-  }
-});
-
-app.post('/login', async function (req, res) {
-  const { phone } = req.body;
-  try {
-    const user = await Users.findOne({ where: { phone } })
-    if (user) {
-      // 전화번호가 일치하는 경우
-      res.redirect('/new?phone=' + phone)
-    } else {
-      // 전화번호가 일치하지 않는 경우
-      console.log('로그인 실패! 회원가입해주세요');
-      res.status(401).send('로그인에 실패하였습니다.');
-    }
-  } catch (error) {
-    console.error(error);
-    res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
-  }
-});
-
 //main
-app.get('/main', async function (req, res) {
+app.get('/', async function (req, res) {
   res.render('main');
 });
 
 //login 페이지
-app.get('/', async function (req, res) {
+app.get('/login', async function (req, res) {
   try {
     const users = await Users.findAll();
     res.render('login', { phone: '', users })
@@ -132,18 +149,13 @@ app.post('/login', async function (req, res) {
     } else {
       // 전화번호가 일치하지 않는 경우
       console.log('로그인 실패! 회원가입해주세요');
-      res.status(401).send('로그인에 실패하였습니다.');
+      res.render('login', { phone, message: '로그인에 실패하였습니다.' });
     }
   } catch (error) {
     console.error(error);
     res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
   }
 });
-
-/*
-app.get('/register', async function (req, res) {
-  console.log('회원가입창')
-});*/
 
 app.post('/new', async function (req, res) {
   const { phone, company, number, itemname } = req.body;
@@ -156,9 +168,8 @@ app.post('/new', async function (req, res) {
       console.log('데이터저장성공')
     }else{
       console.log('로그인실패! 회원가입해주세요')
-      
-      res.redirect('/')
-      
+      res.status(401).send('<script>alert("로그인에 실패하였습니다. 회원가입이 필요합니다."); location.href="/login";</script>');
+      res.redirect('login')
     }
     
     const users = await Users.findAll({where: { phone }});
@@ -172,7 +183,7 @@ app.post('/new', async function (req, res) {
   }
 });
 
-app.get('/new/:phone', async function (req, res) {
+app.get('/new?phone=', async function (req, res) {
   const phone = req.params.phone;
 
   try {
@@ -183,7 +194,6 @@ app.get('/new/:phone', async function (req, res) {
     res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });
   }
 });
-
 
 app.get('/new', async function (req, res) {
   try {
@@ -220,13 +230,12 @@ app.post('/detailsearch', function(req, res) {
 });
 
 app.post('/delete', async function (req, res) {
-  const number = req.body.number;
-  const phone = req.body.phone;
+  const { id, phone } = req.body;
 
   try {
-    // 데이터베이스에서 해당 데이터를 삭제
-    await Users.destroy({ where: { number }});
-    res.redirect('/'); // 삭제 후 해당 페이지로 리다이렉트
+    await Users.destroy({ where: { id } });
+    const users = await Users.findAll({ where: { phone } });
+    res.render('new', { phone, users });
   } catch (error) {
     console.error(error);
     res.render('error', { message: '데이터베이스 오류가 발생했습니다.' });

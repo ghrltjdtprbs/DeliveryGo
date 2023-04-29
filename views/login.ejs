@@ -14,8 +14,8 @@
         <nav>
             <div class="wrapper" style="width: 1200px; text-align: right;">
                 <a class="bar" href="mainInfo.html">소개하기</a>
-                <a class="bar" href="/main">홈화면</a>
-                <a class="bar" href="/">로그인</a>
+                <a class="bar" href="/">홈화면</a>
+                <a class="bar" href="/login">로그인</a>
                 <a class="bar" href="feedback.html">피드백</a>
             </div>
         </nav>
@@ -23,12 +23,13 @@
     
     <div class="wrap">
         <div class="box">
+            
             <form method="post" action="/new">
             <div class="box-top" style="text-align: center;">
                 
                     <input type="text" id="phone" name="phone" placeholder="010-0000-0000" value="<%= phone %>">  
                     <input type="submit" class="box-buttom button" value="로그인" style="margin-left: 25px;">           
-                
+                    
             </div>
             </form>
             <form action="/register" method="get" style="width:560px;">

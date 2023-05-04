@@ -1,0 +1,27 @@
+
+
+header {
+    font-style: 'Inter';
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    height: 1.5625rem;
+    padding: 1rem;
+    background: rgba(000,000,000,80);
+    font-weight: normal;
+    display: flex;
+    justify-content: end;
+    left:0;
+ 
+    top: 0;
+    font-size: 1rem;
+}
+
+nav {
+    margin-right: 2%;
+}
+.bar{
+    padding-right: 30px;
+    color: white;
+    text-decoration: none;
+}

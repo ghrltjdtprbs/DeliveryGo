@@ -1,0 +1,129 @@
+body {
+    background-color: black;
+    margin-top: 5rem;
+    color: white;
+    background: url('https://github.com/JOOZOO20/front-end/blob/main/%EC%8B%A0%EC%83%81/img/signinBackground.jpg?raw=true');
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    opacity: 0.7;
+    overflow: hidden;
+}
+
+/*박스 위치 조정. 전체 박스의 center 잡는 역할*/
+.wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+/*박스 내부 block들의 위치 조정*/
+.box{
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 60);
+    width: 600px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/*input 및 input 관련 box들*/
+.form1{
+    width: 100%;
+}
+
+.box-top{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 33px;
+}
+
+.box-top-a{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+#phone::placeholder{
+    font-size: 25px;
+}
+
+#phone{
+    margin-top: 15px;
+    width: 90%;
+    height: 50px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: white;
+    justify-content: center;
+    
+}
+
+.box-top-b{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/*로그인 버튼에 해당되는 input*/
+.box-buttom_button{
+    box-sizing: border-box;
+    border: solid 0.1px rgba(255, 255, 255, 0.5);
+    width: 93%;
+    height: 50px;
+    border-radius: 40px;
+    font-size: 20px;
+    color: black;
+    -moz-box-align: center;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+.box-buttom_button:hover{
+    background-color: rgb(255, 255, 255);
+}
+
+
+/*button 및 button 관련 박스들*/
+.box-buttom{
+    margin: 15px auto;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+}
+
+.box-buttom_signup{
+    width: 100%;
+    vertical-align: top;
+    color: white;
+    text-decoration-line: underline;
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+   
+}
+
+
+
+
+
+
+
+

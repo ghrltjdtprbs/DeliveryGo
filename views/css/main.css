@@ -1,0 +1,355 @@
+
+body{
+    background-color: black;
+    font-style: 'Inter';
+}
+
+#div1 {
+    position: relative;
+    left: 0;
+    top: 200px;
+    width: 100px;
+    height: 100px;
+    -webkit-transform: scale(1);
+    
+}
+
+.move_to_left {
+    -webkit-animation-name: animation_move;
+    -webkit-animation-duration: 9.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: both;
+    animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes animation_move {
+    0% {
+        -webkit-transform: translateX(-1000px) translateY(0px) scale(1);
+    }
+
+    100% {
+        -webkit-transform: translateX(1000px) translateY(0px) scale(1);
+    }
+}
+
+#slide-up.active {
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+  }
+
+  #slide-left.active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+  }
+
+  #slide-right.active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+  }
+
+  #slide-up {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  #slide-left {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  #slide-right {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+#main {
+    background: url('https://github.com/DeliveryGo/UI-design/blob/main/%EA%B7%B8%EB%A6%BC6.png?raw=true');
+    background-size: 100vw 50vh;
+    background-repeat: no-repeat;
+    top:50vh;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    background-position: 0px 80%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    gap: 20px;
+    width: 100vw;
+    padding-top: 15rem;
+    /* margin: 0 auto; */
+}
+
+
+h1{
+    font-size: 7rem;
+    margin: 0;
+    z-index: 1;
+    font-style: italic;
+}
+h4{
+    margin: 0;
+    z-index: 1;
+}
+button{
+
+    font-size: 16.7px;
+    color: #494747;
+    position: relative;
+    top: 1.1rem;
+    box-shadow: 4px 4px 6px rgb(147 145 145);
+    border-radius: 5rem;
+    width: 130px;
+    height: 55px;
+    border: 0.01rem;
+    font-weight: bold;
+    
+}
+
+button:hover{
+    color :#201f1f;
+    background-color: rgb(166, 165, 165);
+    font-weight: bolder;
+    font-size: 17px;
+}
+
+ul{
+    list-style: none;
+    line-height: 2.3;
+
+}
+/* mainInfo */
+body{
+    color: white;
+}
+
+.wrap2{
+    margin-top: 3rem; /*margin top*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 150px;
+}
+
+.box2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(83, 81, 81, 0.41);
+    border-radius: 25px;
+    width: 260px;
+    height: 290px;
+    gap: 20px;
+    text-align: center;
+    box-shadow: 3px 3px 3px 3px rgba(110, 110, 110, 0.8);
+}
+.box2:hover{
+    background-color: rgb(126, 126, 126);
+    
+}
+
+
+.wrap2 img{
+    
+    width: 80px;
+    height: 80px;
+}
+
+.tags{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.bl_title, .bc_title, .br_title{
+    font-weight: normal;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+/*developerInfo */
+
+
+.wrap4{
+    margin-top: 3rem; /*margin top*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    color: white;
+}
+
+.box4-1{
+    border-bottom: 2px solid goldenrod;
+}
+
+.box4-1 h2{
+    font-style: italic;
+}
+
+.box4-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+
+.box4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(83, 81, 81, 0.41);
+    border-radius: 20px;
+    width: 220px;
+    height: 300px;
+    gap: 0px;
+    text-align: center;
+    box-shadow: 3px 3px 3px 3px rgba(163, 163, 163, 0.8);
+}
+
+.box4-ico{
+    margin-top: 0rem;
+    width: 220px;
+    height: 150px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.box4_tags{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+ul{
+    padding-right: 3rem;
+}
+li:nth-child(2){
+    list-style-image: url('https://github.com/DeliveryGo/UI-design/blob/main/GitHub.png?raw=true');
+}
+
+
+.tags{
+    text-decoration: none;
+    color: white;
+}
+
+/* productInfo */
+
+
+
+#productInfo {
+    font-style: 'Inter';
+    background-color: black;
+    color: white;
+    margin-top: 15rem;
+    margin-bottom: 20rem;
+}
+
+.box3 {
+    position: relative;
+    overflow: hidden;
+    width: 58rem;
+    height: 18rem;
+
+    background: rgba(83, 81, 81, 0.41);
+    border-radius: 1.25rem;
+}
+
+.wrap3-1{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    text-align: center;
+   
+}
+
+.box3-txt1{
+    position: absolute;
+    width: 50rem;
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+}
+.box3-txt2{
+    position: absolute;
+    width: 50rem;
+    margin-top: 7rem;
+}
+.box3-txt3{
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-top: 12rem;
+    position: absolute;
+    width: 50rem;
+    font-size: 0.9rem;
+}
+.box3-txt1, .box3-txt2, .box3-txt3{
+    margin-left: 5rem;
+}
+
+.name{
+    color: gold;
+}
+
+.wrap3-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap3-2 img{
+    width: 25rem;
+    height: 19rem;
+    float: left;
+    margin-top: 7rem;
+    box-shadow: 6px 6px 12px gray;
+    border: 0.2px solid;
+    border-color: rgb(71, 70, 70);
+  
+}
+
+.bottomTxt3{
+    width: 25rem;
+    height: 12.5rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 5rem;
+    font-size: 1.3rem;
+}
+.bottomTxt3-1{
+    position: absolute;
+    width: 23rem;
+    color: rgba(255, 192, 98, 81);
+    font-style: italic;
+}
+.bottomTxt3-2{
+    position: absolute;
+    width: 23rem;
+    font-style: italic;
+
+}
+.bottomTxt3-3{
+    width: 23rem;
+    position: absolute;
+    color: rgba(235, 156, 63, 72);
+    font-style: italic;
+}
+

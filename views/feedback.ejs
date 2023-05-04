@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <link rel="stylesheet" href="css/navBar.css">
+
+    <link rel="stylesheet" href="css/feedback.css"> 
+    <link rel="stylesheet" href="css/scrollsnap.css">
+  
+    <title>DeliveryGo</title>
+</head>
+
+<body style="background-color: black;">
+
+    
+    <header>
+        <nav>
+            <div class="wrapper" style="width: max-content; text-align: right;">
+                <a class="bar" href="/">홈화면</a>
+                <a class="bar" href="/#mainInfo">소개하기</a>
+                <a class="bar" href="/login">로그인</a>
+                <a class="bar" href="/feedback">피드백</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="scroll-box">
+
+
+        <div class="scroll">
+            <div id="feedback">
+                <div class="content6">
+                    <div class="content6_top">
+                        <p>DeliveryGO의 문제나 건의사항을 알려주세요!</p>
+                        <p>피드백을 확인하고 꼼꼼히 읽어보지만,</p>
+                        <p>답변 반영에 며칠이 소요되는 점 양해 부탁드립니다.</p>
+                    </div>
+
+                    <div class="content6_middle">
+        <form action="/feedback" method="post" class="feedback_form">
+            <div class="inputform">
+                <textarea name="feedback" id="feedback-display" cols="70" rows="20" maxlength="200"
+                    placeholder="피드백 입력하기"></textarea>
+            </div>
+            <div class="content6_bottom">
+                <button type="reset">취소</button>
+                <button type="submit" value="submit">등록</button>
+                </div>
+            
+        </form>
+    
+</head>
+<body>
+    
+</body>
+</html>

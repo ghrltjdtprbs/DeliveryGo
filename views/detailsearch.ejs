@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <meta http-equiv="Content-Type" content="text/html; charset=ko">
+   <title>New Page</title>
+</head>
+<style>
+   #tekbeCompnayList,
+   #invoiceNumberText {
+      width: 500px;
+      height: 30px;
+      padding-left: 10px;
+      font-size: 18px;
+      color: black;
+      border: 1px solid black;
+      border-radius: 3px;
+   }
+   #tekbeCompnayName,
+   #invoiceNumber {
+      color: black;
+      font-weight: bold;
+      margin-right: 20px;
+      font-size: 18px;
+   }
+   #myButton1 {
+      background: #6893b0;
+      background-image: -webkit-linear-gradient(top, #6893b0, #2980b9);
+      background-image: -moz-linear-gradient(top, #6893b0, #2980b9);
+      background-image: -ms-linear-gradient(top, #6893b0, #2980b9);
+      background-image: -o-linear-gradient(top, #6893b0, #2980b9);
+      background-image: linear-gradient(to bottom, #6893b0, #2980b9);
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0px;
+      font-family: Arial;
+      color: #ffffff;
+      font-size: 20px;
+      padding: 10px 10px 10px 10px;
+      text-decoration: none;
+   }
+   #myButton1:hover {
+      background: #3cb0fd;
+      background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+      text-decoration: none;
+   }
+   table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+   }
+   td,
+   th {
+      border: 1px solid black;
+      text-align: left;
+      padding: 8px;
+   }
+   tr:nth-child(even) {
+      background-color: white;
+   }
+</style>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+<script>
+   $(document).ready(function () {
+      var myKey = "jrrtLuZYMZrenSVYMTA9Xg"; // sweet tracker에서 발급받은 자신의 키 넣는다.
+      // 택배사 목록 조회 company-api
+      $.ajax({
+         type: "GET",
+         dataType: "json",
+         url: "http://info.sweettracker.co.kr/api/v1/companylist?t_key=" + myKey,
+         success: function (data) {
+            // 방법 1. JSON.parse 이용하기
+            //var parseData = JSON.parse(JSON.stringify(data));
+            //console.log(parseData.Company); // 그중 Json Array에 접근하기 위해 Array명 Company 입력
+            // 방법 2. Json으로 가져온 데이터에 Array로 바로 접근하기
+            var CompanyArray = data.Company; // Json Array에 접근하기 위해 Array명 Company 입력
+            console.log(CompanyArray);
+            var myData = "";
+            $.each(CompanyArray, function (key, value) {
+               myData += ('<option value=' + value.Code + '>' + value.Name + '</option>');
+            });
+            $("#tekbeCompnayList").html(myData);
+         }
+      });
+      // 배송정보와 배송추적 tracking-api
+      $("#myButton1").click(function () {
+         var t_code = $('#tekbeCompnayList option:selected').attr('value');
+         var t_invoice = $('#invoiceNumberText').val();
+         var company = $('#tekbeCompnayList option:selected').attr('value'); // 선택된 옵션의 텍스트 값을 가져와 company 변수에 저장
+          var number = $('#invoiceNumberText').val(); // 입력된 송장번호 값을 가져와 number 변수에 저장
+         $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "http://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=" + myKey + "&t_code=" + t_code + "&t_invoice=" + t_invoice,
+            success: function (data) {
+               console.log(data);
+               var myInvoiceData = "";
+               if (data.status == false) {
+                  myInvoiceData += ('<p>' + data.msg + '<p>');
+               } else {
+                  switch (data.level) {
+                     case 1:
+                        level = "배송 준비중"
+                        break;
+                     case 2:
+                        level = "집화완료"
+                        break;
+                     case 3:
+                        level = "배송중"
+                        break;
+                     case 4:
+                        level = "지점 도착"
+                        break;
+                     case 5:
+                        level = "배송출발"
+                        break;
+                     case 6:
+                        level = "배송완료"
+                        break;
+                  }
+                  myInvoiceData += ('<tr>');
+                  myInvoiceData += ('<th>' + "배송상태" + '</td>');
+                  myInvoiceData += ('<th>' + level + '</td>');
+                  myInvoiceData += ('</tr>');
+                  myInvoiceData += ('<tr>');
+                  myInvoiceData += ('<th>' + "송장번호" + '</td>');
+                  myInvoiceData += ('<th>' + data.invoiceNo + '</td>');
+                  myInvoiceData += ('</tr>');
+               }
+               $("#myPtag").html(myInvoiceData)
+               var trackingDetails = data.trackingDetails;
+               var myTracking = "";
+               var header = "";
+               header += ('<tr>');
+               header += ('<th>' + "시간" + '</th>');
+               header += ('<th>' + "장소" + '</th>');
+               header += ('<th>' + "유형" + '</th>');
+               header += ('<th>' + "전화번호" + '</th>');
+               header += ('</tr>');
+               $.each(trackingDetails, function (key, value) {
+                  myTracking += ('<tr>');
+                  myTracking += ('<td>' + value.timeString + '</td>');
+                  myTracking += ('<td>' + value.where + '</td>');
+                  myTracking += ('<td>' + value.kind + '</td>');
+                  myTracking += ('<td>' + value.telno + '</td>');
+                  myTracking += ('</tr>');
+               });
+               $("#myPtag2").html(header + myTracking);
+            }
+         });
+         
+      });
+   });
+</script>
+
+<body>
+   <h1>전화번호 받아서 데이터베이스 조회 가능</h1>
+   <form action="/new" method="POST">
+      <% if (phone) { %>
+         <label for="phone">Phone:</label>
+         <input type="text" id="phone" name="phone" value="<%= phone %>" readonly><br><br> <!-- 번호있을때 -->
+         <% } else { %>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required><br><br> <!-- 번호없을때 -->
+            <% } %>
+
+            
+            <label id="tekbeCompnayName" >택배회사명: </span>
+               <select id="tekbeCompnayList" name="tekbeCompnayList"></select><br /><br />
+
+               <span id="invoiceNumber">운송장번호: </span>
+               <input type="text" id="invoiceNumberText" name="invoiceNumberText"
+                  value="<%= number%>" readonly><br /><br />   
+
+               <label for="itemname">Item Name:</label>
+               <input type="text" id="itemname" name="itemname" value="<%= itemname %>"><br><br>
+               
+                  
+            
+               
+               
+            
+            
+               
+               <script>
+                  const company = document.getElementById("tekbeCompnayList").value;
+  const number = document.getElementById("invoiceNumberText").value;
+  console.log("company: ", company);
+  console.log("number: ", number);
+  // 이후에 이 값들을 저장하거나 다른 작업을 수행할 수 있습니다.
+               </script>
+
+               <% if (company) { %>
+                  <label for="company">company:</label>
+                  <input type="text" id="company" name="company" value="<%= company.Name %>" readonly><br><br> <!-- 번호있을때 -->
+                  <% } else { %>
+                     <label for="company">company:</label>
+                     <input type="text" id="company" name="company" readonly><br><br> <!-- 번호없을때 -->
+                     <% } %>
+               
+               <% if (number) { %>
+                  <label for="number">number:</label>
+                  <input type="text" id="number" name="number" value="<%= number.invoiceNo %>" readonly><br><br> <!-- 번호있을때 -->
+                  <% } else { %>
+                     <label for="number">number:</label>
+                     <input type="text" id="number" name="number" readonly><br><br> <!-- 번호없을때 -->
+                     <% } %>
+
+
+
+                     <h4>저장정보</h4>
+                     
+                         <li><%= phone%> <%= itemname%></li>
+                     
+
+
+               <label for="company" style="visibility:hidden">Company:</label>
+               <input type="text" id="company" name="company" value="<%= company.Name %>" style="visibility:hidden"><br><br>
+            <label for="number" style="visibility:hidden" >number:</label>
+               <input type="text" id="number" name="number" value="<%= JSON.stringify(number) %>" style="visibility:hidden"><br><br>
+
+
+   </form>
+   <button id="myButton1">택배 조회하기 </button>
+               <br />
+               <br />
+               <div>
+                  <table id="myPtag"></table>
+               </div>
+               <br />
+               <div>
+                  <table id="myPtag2"></table>
+               </div>
+
+               
+
+
+</body>
+
+</html>
